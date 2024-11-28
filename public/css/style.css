@@ -1,0 +1,141 @@
+/* General Reset and Font Styling */
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: white;
+    color: black;
+}
+
+/* Container for centering content */
+.container {
+    width: 95%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Header and Navigation */
+header {
+    background-color: #2d9d63; /* Main Color */
+    color: white;
+    padding-bottom: 10px;
+}
+
+/* Navigation Styling */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 10px 0;
+}
+
+.logo img {
+    width: 100px; /* Adjust logo size */
+    height: auto; /* Maintains the aspect ratio */
+}
+
+.logo a {
+    font-size: 26px; /* Increased font size */
+    color: white;
+    text-decoration: none;
+}
+
+/* Centered navigation links */
+.nav-links {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    justify-content: center;
+    flex: 1;
+}
+
+.nav-links li {
+    margin-right: 30px; /* Increased space between links */
+}
+
+.nav-links li a {
+    color: white;
+    text-decoration: none;
+    font-weight: 700; /* Make the nav items bold */
+    font-size: 22px; /* Increased font size */
+}
+
+.nav-links li a:hover {
+    color: #f0f0f0; /* Light hover effect */
+}
+
+/* Auth, Cart, and Search Icons (Right of the navigation) */
+.auth-cart-search {
+    display: flex;
+    align-items: center;
+}
+
+.auth-cart-search ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.auth-cart-search ul li {
+    margin-left: 30px; /* Increased space between items */
+}
+
+.auth-cart-search ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: 700; /* Make the links bold */
+    font-size: 22px; /* Increased font size */
+}
+
+.auth-cart-search ul li a:hover {
+    color: #f0f0f0; /* Light hover effect */
+}
+
+/* Footer */
+footer {
+    background-color: #2d9d63;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+footer p {
+    margin: 0;
+    font-weight: 500; /* Make footer text bold */
+}
+
+/* Links and Buttons */
+a {
+    color: #2d9d63; /* Main Color Links */
+    text-decoration: none;
+}
+
+a:hover {
+    color: #1a7d47; /* Slightly darker shade of main color */
+}
+
+/* Responsive Design: Ensures the layout is mobile-friendly */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column; /* Stack elements on smaller screens */
+        align-items: center;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        margin-top: 10px;
+    }
+
+    .nav-links li {
+        margin: 5px 0;
+    }
+
+    .auth-cart-search {
+        margin-top: 10px;
+    }
+}
