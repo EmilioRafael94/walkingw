@@ -53,7 +53,7 @@ nav {
     padding: 0;
     justify-content: flex-start; /* Align items to the left */
     flex: 1;
-    margin-left: 500px; /* Adds space on the left to move the links to the right */
+    margin-left: 570px; /* Adds space on the left to move the links to the right */
 }
 
 .nav-links li {

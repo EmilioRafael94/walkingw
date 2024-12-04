@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\DB; // Added DB facade
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ServiceController;
@@ -34,3 +35,14 @@ Route::post('/register', [RegisterController::class, 'register'])->name('registe
 
 // Optional: Add logout route if needed
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
+// MongoDB Connection Test Route
+Route::get('/test-mongodb', function () {
+    try {
+        // Test MongoDB connection
+        $mongo = DB::connection('mongodb')->getMongoClient(); // Using the DB facade to test the connection
+        return response()->json(['status' => 'success', 'message' => 'MongoDB connection successful']);
+    } catch (\Exception $e) {
+        return response()->json(['status' => 'error', 'message' => $e->getMessage()]);
+    }
+});

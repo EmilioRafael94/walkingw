@@ -17,7 +17,7 @@
     <!-- Product Card 1 - Basketball -->
     <div class="product-card" data-category="basketball">
         <div class="product-image-container">
-            <img src="path-to-image1.jpg" alt="Air Bretts" class="product-image">
+            <img src="/images/air brett.jpg" alt="Air Bretts" class="product-image">
         </div>
         <h2 class="product-title">Air Bretts</h2>
         <p class="product-price">$1,599.00</p>
@@ -38,7 +38,7 @@
     <!-- Product Card 2 - Casual -->
     <div class="product-card" data-category="casual">
         <div class="product-image-container">
-            <img src="path-to-image2.jpg" alt="Rubio Walkers" class="product-image">
+            <img src="/images/air brett 2.jpg" alt="Rubio Walkers" class="product-image">
         </div>
         <h2 class="product-title">Rubio Walkers</h2>
         <p class="product-price">$1,899.00</p>
