@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\DB; // Added DB facade
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ServiceController;
@@ -9,6 +8,8 @@ use App\Http\Controllers\AboutController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\CheckoutController;
+use Illuminate\Support\Facades\DB; // DB facade for MongoDB test
 
 // Home Page Route
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -36,13 +37,38 @@ Route::post('/register', [RegisterController::class, 'register'])->name('registe
 // Optional: Add logout route if needed
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
-// MongoDB Connection Test Route
-Route::get('/test-mongodb', function () {
+// Checkout Route (Authenticated routes)
+Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout')->middleware('auth');
+
+// MongoDB Test Route for Inserting Data (Testing MongoDB connection)
+Route::get('/test-insert', function () {
     try {
-        // Test MongoDB connection
-        $mongo = DB::connection('mongodb')->getMongoClient(); // Using the DB facade to test the connection
-        return response()->json(['status' => 'success', 'message' => 'MongoDB connection successful']);
+        // Get MongoDB Database instance
+        $database = DB::connection('mongodb')->getMongoClient()->selectDatabase('walkingwdb'); // Replace 'walkingwdb' with your actual database name
+        
+        // Select the collection
+        $collection = $database->selectCollection('testing'); // Replace 'testing' with your collection name
+        
+        // Insert a document into the collection
+        $document = [
+            'name' => 'Test User',
+            'email' => 'test@example.com',
+            'created_at' => now(),
+        ];
+        $insertResult = $collection->insertOne($document);
+
+        // Retrieve all documents
+        $allDocuments = $collection->find()->toArray();
+
+        return response()->json([
+            'status' => 'success',
+            'inserted_id' => $insertResult->getInsertedId(),
+            'data' => $allDocuments,
+        ]);
     } catch (\Exception $e) {
-        return response()->json(['status' => 'error', 'message' => $e->getMessage()]);
+        return response()->json([
+            'status' => 'error',
+            'message' => $e->getMessage(),
+        ]);
     }
 });
