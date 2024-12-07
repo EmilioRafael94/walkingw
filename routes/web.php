@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\DB; // Added DB facade
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ServiceController;
@@ -9,7 +10,6 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\CheckoutController;
-use Illuminate\Support\Facades\DB; // DB facade for MongoDB test
 
 // Home Page Route
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -37,17 +37,17 @@ Route::post('/register', [RegisterController::class, 'register'])->name('registe
 // Optional: Add logout route if needed
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
-// Checkout Route (Authenticated routes)
+// Checkout Route
 Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout')->middleware('auth');
 
-// MongoDB Test Route for Inserting Data (Testing MongoDB connection)
+// MongoDB Test Route for Inserting Data
 Route::get('/test-insert', function () {
     try {
         // Get MongoDB Database instance
         $database = DB::connection('mongodb')->getMongoClient()->selectDatabase('walkingwdb'); // Replace 'walkingwdb' with your actual database name
         
         // Select the collection
-        $collection = $database->selectCollection('testing'); // Replace 'testing' with your collection name
+        $collection = $database->selectCollection('testing'); // Replace '1' with your actual collection name
         
         // Insert a document into the collection
         $document = [
