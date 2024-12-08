@@ -7,20 +7,18 @@ return [
     'default' => env('DB_CONNECTION', 'mongodb'),  // Set the default to mongodb or your preferred connection
 
     'connections' => [
-
     'mongodb' => [
-    'driver'   => 'mongodb',
-    'dsn'      => env('MONGO_URI'),
-    'database' => env('DB_DATABASE'),
-    'options'  => [
-        'retryWrites' => true,
-        'w'           => 'majority',
+        'driver'   => 'mongodb',
+        'host'     => env('DB_HOST', '127.0.0.1'),
+        'port'     => env('DB_PORT', 27017),
+        'database' => env('DB_DATABASE'),
+        'username' => env('DB_USERNAME', ''),
+        'password' => env('DB_PASSWORD', ''),
+        'options'  => [
+            'database' => env('DB_DATABASE') // required for MongoDB authentication
+        ]
     ],
 ],
-
-
-
-    ],
 
     // Optional: Migrations for MongoDB (or leave as is for MongoDB to manage separately)
     'migrations' => 'migrations',
